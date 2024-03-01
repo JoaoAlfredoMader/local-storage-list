@@ -14,4 +14,17 @@ function adicionarTarefa(titulo, concluido) {
   fs.writeFileSync('tasks.json', JSON.stringify(listaTarefas));
 }
 
-adicionarTarefa('Fazer compras', false);
+function atualizarTarefa(titulo) {
+  let listaTarefas = JSON.parse(fs.readFileSync('tasks.json', 'utf8'));
+
+  listaTarefas = listaTarefas.map(tarefa => {
+    if (tarefa.titulo === titulo) {
+      tarefa.concluido = true;
+    }
+    return tarefa;
+  });
+
+  fs.writeFileSync('tasks.json', JSON.stringify(listaTarefas));
+}
+
+atualizarTarefa('Fazer compras');

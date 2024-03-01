@@ -1,6 +1,14 @@
 const fs = require('fs');
 
-// CREATE
+
+// Função para ler todas as tarefas salvas no localStorage
+function listarTarefas() {
+    let listaTarefas = JSON.parse(fs.readFileSync('tasks.json', 'utf8'));
+    return listaTarefas;
+  }
+
+  
+// Função para adicionar uma tarefa à lista de tarefas no localStorage
 function adicionarTarefa(titulo, concluido) {
   let listaTarefas = JSON.parse(fs.readFileSync('tasks.json', 'utf8'));
 
@@ -14,7 +22,7 @@ function adicionarTarefa(titulo, concluido) {
   fs.writeFileSync('tasks.json', JSON.stringify(listaTarefas));
 }
 
-// UPDATE
+// Função para atualizar uma tarefa existente no localStorage
 function atualizarTarefa(titulo) {
   let listaTarefas = JSON.parse(fs.readFileSync('tasks.json', 'utf8'));
 
@@ -28,7 +36,7 @@ function atualizarTarefa(titulo) {
   fs.writeFileSync('tasks.json', JSON.stringify(listaTarefas));
 }
 
-// DELETE
+// Função para remover uma tarefa existente do localStorage
 function removerTarefa(titulo) {
   let listaTarefas = JSON.parse(fs.readFileSync('tasks.json', 'utf8'));
 
@@ -37,5 +45,7 @@ function removerTarefa(titulo) {
   fs.writeFileSync('tasks.json', JSON.stringify(listaTarefas));
 }
 
+
+
 // Exemplo de uso
-removerTarefa('Fazer compras');
+console.log(listarTarefas());
